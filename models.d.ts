@@ -1,5 +1,3 @@
-import { Interface } from "readline";
-
 interface Card {
   id: string;
   type?: string;
