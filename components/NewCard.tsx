@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useOutsideClick } from "../customHooks";
 
 interface Props {
   boardId: string;
@@ -9,6 +10,7 @@ export const NewCard: React.FC<Props> = ({ boardId }) => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const resetState = () => {
     setValue("");
@@ -21,8 +23,10 @@ export const NewCard: React.FC<Props> = ({ boardId }) => {
     setValue(value);
   };
 
+  useOutsideClick(ref, resetState);
+
   return (
-    <div>
+    <div ref={ref}>
       <button
         onClick={() => setShow(true)}
         className={`btn-new ${show ? "hide" : ""}`}
