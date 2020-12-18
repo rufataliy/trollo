@@ -1,0 +1,14 @@
+.btn-new {
+  height: 50px;
+  max-height: 50px;
+  transition: 0.2s;
+  width: 100%;
+  color: aliceblue;
+  background: rgba($color: #000, $alpha: 0.5);
+  flex-shrink: 0;
+  border: none;
+}
+
+.btn-new:hover {
+  background: rgba(0, 0, 0, 1);
+}
