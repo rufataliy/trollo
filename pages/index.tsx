@@ -3,17 +3,14 @@ import { Container } from "../components";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Trollo | Boards</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
+      <div className="main-content p-3">
         <Container board={{ id: "test", title: "test" }} />
-      </main>
-
-      <footer></footer>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+.main-content {
+  overflow-x: auto;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  background: var(--main-content-bg-color);
+  background: var(--main-content-bg-gradient);
+}
