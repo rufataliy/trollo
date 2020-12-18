@@ -6,7 +6,6 @@
   max-height: 80vh;
   width: 310px;
   flex-shrink: 0;
-  color: aliceblue;
 
   &-list {
     flex-grow: 1;
@@ -17,6 +16,7 @@
     }
   }
   &-header {
+    color: $white;
   }
   &-footer {
     justify-self: flex-end;
