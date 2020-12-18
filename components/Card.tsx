@@ -5,6 +5,7 @@ import {
   OverlayTrigger,
   Button,
 } from "react-bootstrap";
+import { EditCard } from "./EditCard";
 
 interface Props {
   card: Card;
@@ -29,11 +30,19 @@ export const Card: React.FC<Props> = ({ card }) => {
           Card Title
         </CardBootstrap.Title>
       </CardBootstrap.Header>
-      <CardBootstrap.Body className="p-2 pl-3">
-        {edit ? "edit card" : card.content + card.id}
+      <CardBootstrap.Body className="p-2">
+        {edit ? (
+          <EditCard
+            card={card}
+            handleCancel={resetState}
+            handleSubmit={() => console.log("submit")}
+          />
+        ) : (
+          card.content + card.id
+        )}
       </CardBootstrap.Body>
-      <CardBootstrap.Footer className="p-1 d-flex align-items-center justify-content-between">
-        {!edit && (
+      {!edit && (
+        <CardBootstrap.Footer className="p-2 d-flex align-items-center justify-content-between">
           <div
             className="d-flex justify-content-end align-items-end position-relative"
             role="group"
@@ -85,8 +94,8 @@ export const Card: React.FC<Props> = ({ card }) => {
               </Button>
             </OverlayTrigger>
           </div>
-        )}
-      </CardBootstrap.Footer>
+        </CardBootstrap.Footer>
+      )}
     </CardBootstrap>
   );
 };
