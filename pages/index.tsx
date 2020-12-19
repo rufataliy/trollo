@@ -6,12 +6,12 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useStore } from "../store";
 
 export default function Home() {
-  const { boards, cards, saveCardDrop, reorderBoards } = useStore();
+  const { boards, cards, reorderCards, reorderBoards } = useStore();
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
     if (result.type === "board") return reorderBoards(result);
-    saveCardDrop(result);
+    reorderCards(result);
   };
 
   return (

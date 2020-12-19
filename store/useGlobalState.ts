@@ -34,7 +34,7 @@ export const useGlobalState = (): ContextDefault => {
     });
   };
 
-  const saveCardDrop = (result) => {
+  const reorderCards = (result) => {
     const { destination, source } = result;
     setCards((cards) => {
       let indexBalance = source.index > destination.index ? 0 : -1;
@@ -68,7 +68,7 @@ export const useGlobalState = (): ContextDefault => {
     addNewCard,
     editCard,
     deleteCard,
-    saveCardDrop,
+    reorderCards,
     reorderBoards,
   };
 };
