@@ -15,6 +15,18 @@
       min-height: 70px;
     }
   }
+
+  &-header .btn-toggle {
+    background: none;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    border: none;
+    color: white;
+  }
+
+  &-header .btn-toggle:hover {
+    background-color: rgba($color: #000000, $alpha: 1);
+  }
+
   &-header {
     color: $white;
   }
