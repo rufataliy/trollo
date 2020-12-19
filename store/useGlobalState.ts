@@ -28,6 +28,23 @@ export const useGlobalState = (): ContextDefault => {
     });
   };
 
+  const editBoard = (editedBoard: Board) => {
+    setBoards((boards) => {
+      return boards.map((board) => {
+        if (board.id === editedBoard.id) {
+          return editedBoard;
+        }
+        return board;
+      });
+    });
+  };
+
+  const deleteBoard = (deletedBoard: Board) => {
+    setBoards((board) => {
+      return board.filter((board) => board.id !== deletedBoard.id);
+    });
+  };
+
   const deleteCard = (deletedCard: Card) => {
     setCards((cards) => {
       return cards.filter((card) => card.id !== deletedCard.id);
@@ -67,7 +84,9 @@ export const useGlobalState = (): ContextDefault => {
     addNewBoard,
     addNewCard,
     editCard,
+    editBoard,
     deleteCard,
+    deleteBoard,
     reorderCards,
     reorderBoards,
   };

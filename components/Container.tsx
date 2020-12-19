@@ -5,6 +5,7 @@ import { ConfirmPopover } from "./ConfirmPopover";
 import { DropDown } from "./DropDown";
 import { NewCard } from "./NewCard";
 import { EditBoard } from "./EditBoard";
+import { useStore } from "../store";
 
 interface Props {
   board: Board;
@@ -13,21 +14,26 @@ interface Props {
 export const Container: React.FC<Props> = ({ children, board }) => {
   const [showPopover, setShowPopover] = useState(false);
   const [editing, setEditing] = useState(false);
+  const { editBoard, deleteBoard } = useStore();
 
   const refPopover = useRef<HTMLDivElement>(null);
   const refHeader = useRef<HTMLDivElement>(null);
 
-  const handleDelete = (board: Board) => {
-    console.log("delete");
-  };
-  const handleSubmit = (value: string) => {};
-
   const resetPopover = () => {
-    console.log("reset");
     setShowPopover(false);
   };
   const resetEditing = () => {
     setEditing(false);
+  };
+
+  const handleDelete = (board: Board) => {
+    deleteBoard(board);
+  };
+
+  const handleSubmit = (value: string) => {
+    const editedBoard = { ...board, title: value };
+    editBoard(editedBoard);
+    resetEditing();
   };
 
   useOutsideClick(refPopover, resetPopover);
@@ -41,7 +47,7 @@ export const Container: React.FC<Props> = ({ children, board }) => {
       >
         {editing ? (
           <EditBoard
-            handleSubmit={() => console.log()}
+            handleSubmit={handleSubmit}
             handleCancel={resetEditing}
             board={board}
           />
