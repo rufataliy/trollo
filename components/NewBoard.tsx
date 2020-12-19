@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useOutsideClick } from "../customHooks";
+import { v1 as getNewId } from "uuid";
+import { useStore } from "../store";
 
 export const NewBoard = () => {
+  const { addNewBoard } = useStore();
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
   const [value, setValue] = useState("");
@@ -18,6 +21,8 @@ export const NewBoard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!value.trim()) return setError(true);
+    const newBoard = { title: value, id: getNewId() };
+    addNewBoard(newBoard);
     resetState();
   };
 

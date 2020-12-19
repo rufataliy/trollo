@@ -11,3 +11,12 @@ interface Board {
   id: string;
   title: string;
 }
+
+interface ContextDefault {
+  cards?: Card[];
+  boards?: Board[];
+  addNewBoard: (board: Board) => void;
+  addNewCard: (card: Card) => void;
+  editCard: (editedCard: Card) => void;
+  deleteCard: (deletedCard: Card) => void;
+}
