@@ -19,4 +19,6 @@ interface ContextDefault {
   addNewCard: (card: Card) => void;
   editCard: (editedCard: Card) => void;
   deleteCard: (deletedCard: Card) => void;
+  reorderCards: (result: { [key: string]: any }) => void;
+  reorderBoards: (result: { [key: string]: any }) => void;
 }
