@@ -2,17 +2,17 @@ import React, { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 
 interface Props {
-  card: Card;
+  board: Board;
   handleCancel: () => void;
   handleSubmit: (value: string) => void;
 }
 
-export const EditCard: React.FC<Props> = ({
-  card,
+export const EditBoard: React.FC<Props> = ({
+  board,
   handleCancel,
   handleSubmit,
 }) => {
-  const [value, setValue] = useState(card.content);
+  const [value, setValue] = useState(board.title);
   const [error, setError] = useState(false);
 
   const resetState = () => {
@@ -28,17 +28,17 @@ export const EditCard: React.FC<Props> = ({
 
   return (
     <>
-      <div>
+      <div className="w-100">
         <div className={`mb-2 `}>
           <Form.Group className="m-0">
             <Form.Label htmlFor="content" className="form-label">
-              Content
+              Title
             </Form.Label>
             <Form.Control
               type="text"
               className="m-0"
               name="content"
-              id={card.id + "edit"}
+              id={board.id + "edit"}
               isInvalid={error}
               onChange={(e) => handleChange(e.currentTarget.value)}
               value={value}

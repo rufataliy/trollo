@@ -8,7 +8,7 @@ interface ToggleProps {
 export const CustomToggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
   ({ children, onClick }, ref) => (
     <Button
-      className="btn btn-sm btn-light"
+      className="btn btn-sm btn-light btn-toggle"
       ref={ref}
       onClick={(e) => {
         e.preventDefault();
