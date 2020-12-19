@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Card as CardBootstrap, Button } from "react-bootstrap";
 import { EditCard } from "./EditCard";
 import { ConfirmPopover } from "./ConfirmPopover";
 import { DropDown } from "./DropDown";
+import { useOutsideClick } from "../customHooks";
 
 interface Props {
   card: Card;
@@ -11,6 +12,8 @@ interface Props {
 export const Card: React.FC<Props> = ({ card }) => {
   const [edit, setEdit] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
+  const refBody = useRef<HTMLDivElement>(null);
+  const refPopover = useRef<HTMLDivElement>(null);
 
   const resetState = () => {
     setEdit(false);
@@ -32,8 +35,11 @@ export const Card: React.FC<Props> = ({ card }) => {
     </Button>
   );
 
+  useOutsideClick(refPopover, resetPopover);
+  useOutsideClick(refBody, resetState);
+
   return (
-    <CardBootstrap id={card.id} className="w-100 mb-2">
+    <CardBootstrap ref={refBody} id={card.id} className="w-100 mb-2">
       <CardBootstrap.Header className="d-flex align-items-center justify-content-between pt-1 pb-1 pr-1">
         <CardBootstrap.Title as="p" className="w-100 m-0">
           Card Title
@@ -54,6 +60,7 @@ export const Card: React.FC<Props> = ({ card }) => {
       {!edit && (
         <CardBootstrap.Footer className="p-2 d-flex align-items-center justify-content-between">
           <div
+            ref={refPopover}
             className="d-flex justify-content-end align-items-end position-relative"
             role="group"
           >
