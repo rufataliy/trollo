@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { Container, Card } from "../components";
+import React from "react";
+import { Container, Card, NewBoard } from "../components";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
             card={{ id: "test-card", title: "card-title", board_id: "test" }}
           />
         </Container>
+        <NewBoard />
       </div>
     </>
   );
