@@ -5,7 +5,7 @@ import { Container, Card, NewBoard } from "../components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useStore } from "../store";
 
-export default function Home() {
+export default function Boards() {
   const { boards, cards, reorderCards, reorderBoards } = useStore();
 
   const handleDragEnd = (result) => {
