@@ -38,7 +38,7 @@ export const EditBoard: React.FC<Props> = ({
               type="text"
               className="m-0"
               name="content"
-              id="content"
+              id={board.id + "edit"}
               isInvalid={error}
               onChange={(e) => handleChange(e.currentTarget.value)}
               value={value}

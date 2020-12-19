@@ -60,7 +60,7 @@ export const NewCard: React.FC<Props> = ({ boardId }) => {
             type="text"
             className="form-control"
             name="card"
-            id="card"
+            id={boardId + "-new-card"}
             onChange={(e) => handleChange(e.currentTarget.value)}
             value={value}
             placeholder="Next big things . . ."

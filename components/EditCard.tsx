@@ -38,7 +38,7 @@ export const EditCard: React.FC<Props> = ({
               type="text"
               className="m-0"
               name="content"
-              id="content"
+              id={card.id + "edit"}
               isInvalid={error}
               onChange={(e) => handleChange(e.currentTarget.value)}
               value={value}
