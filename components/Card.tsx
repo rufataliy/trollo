@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card as CardBootstrap, Button } from "react-bootstrap";
 import { EditCard } from "./EditCard";
 import { ConfirmPopover } from "./ConfirmPopover";
+import { DropDown } from "./DropDown";
 
 interface Props {
   card: Card;
@@ -37,6 +38,7 @@ export const Card: React.FC<Props> = ({ card }) => {
         <CardBootstrap.Title as="p" className="w-100 m-0">
           Card Title
         </CardBootstrap.Title>
+        <DropDown id={card.id} reset={() => console.log("reset")}></DropDown>
       </CardBootstrap.Header>
       <CardBootstrap.Body className="p-2">
         {edit ? (
