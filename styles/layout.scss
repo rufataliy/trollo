@@ -10,8 +10,11 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: auto;
+  overflow-y: hidden;
   & > *:nth-child(2) {
     flex-grow: 1;
+    overflow-y: auto;
   }
   background: var(--main-content-bg-color);
   background: var(--main-content-bg-gradient);
