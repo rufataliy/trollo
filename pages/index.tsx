@@ -6,10 +6,11 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useStore } from "../store";
 
 export default function Home() {
-  const { boards, cards, saveCardDrop } = useStore();
+  const { boards, cards, saveCardDrop, reorderBoards } = useStore();
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
+    if (result.type === "board") return reorderBoards(result);
     saveCardDrop(result);
   };
 
@@ -20,47 +21,77 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="main-content p-3">
-          {boards.map((board) => {
+        <Droppable droppableId={"board"} type="board" direction="horizontal">
+          {(provided) => {
             return (
-              <Container board={board}>
-                <Droppable key={board.id} droppableId={board.id}>
-                  {(provided) => {
-                    return (
-                      <div {...provided.droppableProps} ref={provided.innerRef}>
-                        {cards.map((card, index) => {
-                          if (card.board_id === board.id) {
-                            return (
-                              <Draggable
-                                draggableId={card.id}
-                                index={index}
-                                key={card.id}
-                              >
+              <div
+                className="main-content p-3"
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {boards.map((board, index) => {
+                  return (
+                    <Draggable
+                      draggableId={board.id}
+                      index={index}
+                      key={board.id}
+                    >
+                      {(provided) => {
+                        return (
+                          <div
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                          >
+                            <Container board={board}>
+                              <Droppable key={board.id} droppableId={board.id}>
                                 {(provided) => {
                                   return (
                                     <div
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
+                                      {...provided.droppableProps}
                                       ref={provided.innerRef}
                                     >
-                                      <Card card={card} />
+                                      {cards.map((card, index) => {
+                                        if (card.board_id === board.id) {
+                                          return (
+                                            <Draggable
+                                              draggableId={card.id}
+                                              index={index}
+                                              key={card.id}
+                                            >
+                                              {(provided) => {
+                                                return (
+                                                  <div
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    ref={provided.innerRef}
+                                                  >
+                                                    <Card card={card} />
+                                                  </div>
+                                                );
+                                              }}
+                                            </Draggable>
+                                          );
+                                        }
+                                      })}
+                                      {provided.placeholder}
                                     </div>
                                   );
                                 }}
-                              </Draggable>
-                            );
-                          }
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
-              </Container>
+                              </Droppable>
+                            </Container>
+                          </div>
+                        );
+                      }}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+                <NewBoard />
+              </div>
             );
-          })}
-          <NewBoard />
-        </div>
+          }}
+        </Droppable>
       </DragDropContext>
     </>
   );

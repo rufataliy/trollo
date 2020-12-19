@@ -43,13 +43,21 @@ export const useGlobalState = (): ContextDefault => {
       const draggedItem = updatedCards[source.index];
       draggedItem.board_id = destination.droppableId;
 
-      updatedCards.splice(result.source.index, 1);
-      updatedCards.splice(
-        result.destination.index + indexBalance,
-        0,
-        draggedItem
-      );
+      updatedCards.splice(source.index, 1);
+      updatedCards.splice(destination.index + indexBalance, 0, draggedItem);
       return updatedCards;
+    });
+  };
+
+  const reorderBoards = (result) => {
+    const { destination, source } = result;
+    setBoards((boards) => {
+      const updatedBoards = [...boards];
+      const draggedItem = updatedBoards[source.index];
+
+      updatedBoards.splice(source.index, 1);
+      updatedBoards.splice(destination.index, 0, draggedItem);
+      return updatedBoards;
     });
   };
 
@@ -61,5 +69,6 @@ export const useGlobalState = (): ContextDefault => {
     editCard,
     deleteCard,
     saveCardDrop,
+    reorderBoards,
   };
 };
