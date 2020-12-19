@@ -1,11 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Card as CardBootstrap,
-  Popover,
-  OverlayTrigger,
-  Button,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Card as CardBootstrap, Button } from "react-bootstrap";
 import { EditCard } from "./EditCard";
+import { ConfirmPopover } from "./ConfirmPopover";
 
 interface Props {
   card: Card;
@@ -22,6 +18,18 @@ export const Card: React.FC<Props> = ({ card }) => {
   const resetPopover = () => {
     setShowPopover(false);
   };
+
+  const DeleteButton = (
+    <Button
+      className="btn-sm text-secondary btn-light d-flex align-items-center"
+      onClick={(e) => {
+        setShowPopover(true);
+      }}
+    >
+      <p className="m-0 mr-1">Delete</p>
+      <i className="bi bi-trash-fill mt-n1" />
+    </Button>
+  );
 
   return (
     <CardBootstrap id={card.id} className="w-100 mb-2">
@@ -57,42 +65,14 @@ export const Card: React.FC<Props> = ({ card }) => {
               <p className="m-0 mr-1">Edit</p>
               <i className="bi bi-pencil-square mt-n1"></i>
             </Button>
-
-            <OverlayTrigger
-              trigger="click"
-              key={card.id + "popover"}
-              placement={"left"}
-              rootClose
+            <ConfirmPopover
+              id={card.id}
               show={showPopover}
-              flip
-              overlay={
-                <Popover id={`popover-${card.id}`}>
-                  <Popover.Title as="h3">Are you sure?</Popover.Title>
-                  <Popover.Content className="d-flex">
-                    <Button
-                      className="btn-sm mr-1 btn-danger w-100"
-                      onClick={() => console.log("delete")}
-                    >
-                      Delete
-                    </Button>
-                    <Button
-                      className="btn-sm btn-secondary w-100"
-                      onClick={() => setShowPopover(false)}
-                    >
-                      Cancel
-                    </Button>
-                  </Popover.Content>
-                </Popover>
-              }
-            >
-              <Button
-                onClick={() => setShowPopover(true)}
-                className="btn-sm text-secondary btn-light d-flex align-items-center"
-              >
-                <p className="m-0 mr-1">Delete</p>
-                <i className="bi bi-trash-fill mt-n1"></i>
-              </Button>
-            </OverlayTrigger>
+              text={"Confirm delete."}
+              Target={DeleteButton}
+              onCancel={resetPopover}
+              onConfirm={resetState}
+            />
           </div>
         </CardBootstrap.Footer>
       )}
