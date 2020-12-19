@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { boardsDefault, cardsDefault } from "./mockData";
 
 export const useGlobalState = () => {
-  const [cards, setCards] = useState<Card[] | null>(null);
-  const [boards, setBoards] = useState<Board[] | null>(null);
+  const [cards, setCards] = useState<Card[] | null>(cardsDefault);
+  const [boards, setBoards] = useState<Board[] | null>(boardsDefault);
 
   const addNewBoard = (newBoard: Board) => {
     setBoards((boards) => {
