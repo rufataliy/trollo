@@ -1,8 +1,10 @@
 import Head from "next/head";
 import React from "react";
 import { Container, Card, NewBoard } from "../components";
+import { useStore } from "../store";
 
 export default function Home() {
+  const { boards, cards } = useStore();
   return (
     <>
       <Head>
@@ -10,11 +12,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="main-content p-3">
-        <Container board={{ id: "test", title: "test" }}>
-          <Card
-            card={{ id: "test-card", title: "card-title", board_id: "test" }}
-          />
-        </Container>
+        {boards.map((board) => {
+          return (
+            <Container board={board}>
+              {cards.map((card) => {
+                if (card.board_id === board.id) return <Card card={card} />;
+              })}
+            </Container>
+          );
+        })}
         <NewBoard />
       </div>
     </>

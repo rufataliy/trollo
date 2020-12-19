@@ -4,6 +4,7 @@ import { EditCard } from "./EditCard";
 import { ConfirmPopover } from "./ConfirmPopover";
 import { DropDown } from "./DropDown";
 import { useOutsideClick } from "../customHooks";
+import { useStore } from "../store";
 
 interface Props {
   card: Card;
@@ -14,9 +15,15 @@ export const Card: React.FC<Props> = ({ card }) => {
   const [showPopover, setShowPopover] = useState(false);
   const refBody = useRef<HTMLDivElement>(null);
   const refPopover = useRef<HTMLDivElement>(null);
+  const { deleteCard } = useStore();
 
   const resetState = () => {
     setEdit(false);
+  };
+
+  const handleDelete = (card) => {
+    deleteCard(card);
+    resetPopover();
   };
 
   const resetPopover = () => {
@@ -42,7 +49,7 @@ export const Card: React.FC<Props> = ({ card }) => {
     <CardBootstrap ref={refBody} id={card.id} className="w-100 mb-2">
       <CardBootstrap.Header className="d-flex align-items-center justify-content-between pt-1 pb-1 pr-1">
         <CardBootstrap.Title as="p" className="w-100 m-0">
-          Card Title
+          {card.title}
         </CardBootstrap.Title>
         <DropDown id={card.id} reset={() => console.log("reset")}></DropDown>
       </CardBootstrap.Header>
@@ -80,7 +87,7 @@ export const Card: React.FC<Props> = ({ card }) => {
               text={"Confirm delete."}
               Target={DeleteButton}
               onCancel={resetPopover}
-              onConfirm={resetState}
+              onConfirm={() => handleDelete(card)}
             />
           </div>
         </CardBootstrap.Footer>
