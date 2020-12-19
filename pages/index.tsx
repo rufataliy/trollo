@@ -1,98 +1,65 @@
-import Head from "next/head";
-import React from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
-import { Container, Card, NewBoard } from "../components";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useStore } from "../store";
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const { boards, cards, reorderCards, reorderBoards } = useStore();
-
-  const handleDragEnd = (result) => {
-    if (!result.destination) return;
-    if (result.type === "board") return reorderBoards(result);
-    reorderCards(result);
-  };
-
   return (
-    <>
+    <div className={styles.container}>
       <Head>
-        <title>Trollo | Boards</title>
+        <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId={"board"} type="board" direction="horizontal">
-          {(provided) => {
-            return (
-              <div
-                className="main-content p-3"
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {boards.map((board, index) => {
-                  return (
-                    <Draggable
-                      draggableId={board.id}
-                      index={index}
-                      key={board.id}
-                    >
-                      {(provided) => {
-                        return (
-                          <div
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
-                          >
-                            <Container board={board}>
-                              <Droppable key={board.id} droppableId={board.id}>
-                                {(provided) => {
-                                  return (
-                                    <div
-                                      {...provided.droppableProps}
-                                      ref={provided.innerRef}
-                                    >
-                                      {cards.map((card, index) => {
-                                        if (card.board_id === board.id) {
-                                          return (
-                                            <Draggable
-                                              draggableId={card.id}
-                                              index={index}
-                                              key={card.id}
-                                            >
-                                              {(provided) => {
-                                                return (
-                                                  <div
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    ref={provided.innerRef}
-                                                  >
-                                                    <Card card={card} />
-                                                  </div>
-                                                );
-                                              }}
-                                            </Draggable>
-                                          );
-                                        }
-                                      })}
-                                      {provided.placeholder}
-                                    </div>
-                                  );
-                                }}
-                              </Droppable>
-                            </Container>
-                          </div>
-                        );
-                      }}
-                    </Draggable>
-                  );
-                })}
-                {provided.placeholder}
-                <NewBoard />
-              </div>
-            );
-          }}
-        </Droppable>
-      </DragDropContext>
-    </>
-  );
+
+      <main className={styles.main}>
+        <h1 className={styles.title}>
+          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        </h1>
+
+        <p className={styles.description}>
+          Get started by editing{' '}
+          <code className={styles.code}>pages/index.js</code>
+        </p>
+
+        <div className={styles.grid}>
+          <a href="https://nextjs.org/docs" className={styles.card}>
+            <h3>Documentation &rarr;</h3>
+            <p>Find in-depth information about Next.js features and API.</p>
+          </a>
+
+          <a href="https://nextjs.org/learn" className={styles.card}>
+            <h3>Learn &rarr;</h3>
+            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          </a>
+
+          <a
+            href="https://github.com/vercel/next.js/tree/master/examples"
+            className={styles.card}
+          >
+            <h3>Examples &rarr;</h3>
+            <p>Discover and deploy boilerplate example Next.js projects.</p>
+          </a>
+
+          <a
+            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            className={styles.card}
+          >
+            <h3>Deploy &rarr;</h3>
+            <p>
+              Instantly deploy your Next.js site to a public URL with Vercel.
+            </p>
+          </a>
+        </div>
+      </main>
+
+      <footer className={styles.footer}>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+        </a>
+      </footer>
+    </div>
+  )
 }

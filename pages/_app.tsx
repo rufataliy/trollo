@@ -1,20 +1,7 @@
-import { Header } from "../components";
-import { StateProvider } from "../store";
-import "../styles/main.scss";
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <StateProvider>
-        <div className="wrapper">
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </div>
-      </StateProvider>
-    </>
-  );
+  return <Component {...pageProps} />
 }
 
-export default MyApp;
+export default MyApp
