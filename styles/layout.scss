@@ -1,0 +1,18 @@
+.main-content {
+  overflow-x: auto;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  & > *:nth-child(2) {
+    flex-grow: 1;
+  }
+  background: var(--main-content-bg-color);
+  background: var(--main-content-bg-gradient);
+}

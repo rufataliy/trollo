@@ -1,0 +1,72 @@
+export const cardsDefault: Card[] = [
+  {
+    title: "Card Title",
+    board_id: "b1",
+    content: "something here long",
+    id: "c0",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b1",
+    content: "something here long",
+    id: "c4",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b1",
+    content: "something here long",
+    id: "c7",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b2",
+    content: "something here long",
+    id: "c2",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b2",
+    content: "something here long",
+    id: "c8",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b2",
+    content: "something here long",
+    id: "c5",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b3",
+    content: "something here long",
+    id: "c3",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+  {
+    title: "Card Title",
+    board_id: "b3",
+    content: "something here long",
+    id: "c6",
+    type: "cards",
+    deadline: "2021-01-10",
+  },
+];
+
+export const boardsDefault: Board[] = [
+  { id: "b1", title: "TO_DO" },
+  { id: "b2", title: "DOING" },
+  { id: "b3", title: "DONE" },
+];
