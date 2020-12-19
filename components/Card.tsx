@@ -5,6 +5,7 @@ import { ConfirmPopover } from "./ConfirmPopover";
 import { DropDown } from "./DropDown";
 import { useOutsideClick } from "../customHooks";
 import { useStore } from "../store";
+import { DueDays } from "./DueDays";
 
 interface Props {
   card: Card;
@@ -74,7 +75,7 @@ export const Card: React.FC<Props> = ({ card }) => {
         <CardBootstrap.Title as="p" className="w-100 m-0">
           {card.title}
         </CardBootstrap.Title>
-        <DropDown id={card.id} reset={() => console.log("reset")}>
+        <DropDown id={card.id} reset={resetOptions}>
           <Form.Group className="form-control h-auto" controlId="deadline">
             <Form.Label>Deadline</Form.Label>
             <Form.Control
@@ -135,6 +136,7 @@ export const Card: React.FC<Props> = ({ card }) => {
       </CardBootstrap.Body>
       {!edit && (
         <CardBootstrap.Footer className="p-2 d-flex align-items-center justify-content-between">
+          <DueDays card={card} />
           <div
             ref={refPopover}
             className="d-flex justify-content-end align-items-end position-relative"
