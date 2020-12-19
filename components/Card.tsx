@@ -15,7 +15,7 @@ export const Card: React.FC<Props> = ({ card }) => {
   const [showPopover, setShowPopover] = useState(false);
   const refBody = useRef<HTMLDivElement>(null);
   const refPopover = useRef<HTMLDivElement>(null);
-  const { deleteCard } = useStore();
+  const { deleteCard, editCard } = useStore();
 
   const resetState = () => {
     setEdit(false);
@@ -24,6 +24,12 @@ export const Card: React.FC<Props> = ({ card }) => {
   const handleDelete = (card) => {
     deleteCard(card);
     resetPopover();
+  };
+
+  const handleEdit = (value) => {
+    card.content = value;
+    editCard(card);
+    resetState();
   };
 
   const resetPopover = () => {
@@ -58,7 +64,7 @@ export const Card: React.FC<Props> = ({ card }) => {
           <EditCard
             card={card}
             handleCancel={resetState}
-            handleSubmit={() => console.log("submit")}
+            handleSubmit={handleEdit}
           />
         ) : (
           card.content + card.id
