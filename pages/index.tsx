@@ -6,7 +6,12 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useStore } from "../store";
 
 export default function Home() {
-  const { boards, cards } = useStore();
+  const { boards, cards, saveCardDrop } = useStore();
+
+  const handleDragEnd = (result) => {
+    if (!result.destination) return;
+    saveCardDrop(result);
+  };
 
   return (
     <>
@@ -14,7 +19,7 @@ export default function Home() {
         <title>Trollo | Boards</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <DragDropContext onDragEnd={() => {}}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <div className="main-content p-3">
           {boards.map((board) => {
             return (

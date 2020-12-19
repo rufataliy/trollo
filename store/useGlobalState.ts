@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { boardsDefault, cardsDefault } from "./mockData";
 
-export const useGlobalState = () => {
+export const useGlobalState = (): ContextDefault => {
   const [cards, setCards] = useState<Card[] | null>(cardsDefault);
   const [boards, setBoards] = useState<Board[] | null>(boardsDefault);
 
@@ -34,6 +34,25 @@ export const useGlobalState = () => {
     });
   };
 
+  const saveCardDrop = (result) => {
+    const { destination, source } = result;
+    setCards((cards) => {
+      let indexBalance = source.index > destination.index ? 0 : -1;
+      if (destination.droppableId === source.droppableId) indexBalance = 0;
+      const updatedCards = [...cards];
+      const draggedItem = updatedCards[source.index];
+      draggedItem.board_id = destination.droppableId;
+
+      updatedCards.splice(result.source.index, 1);
+      updatedCards.splice(
+        result.destination.index + indexBalance,
+        0,
+        draggedItem
+      );
+      return updatedCards;
+    });
+  };
+
   return {
     cards,
     boards,
@@ -41,5 +60,6 @@ export const useGlobalState = () => {
     addNewCard,
     editCard,
     deleteCard,
+    saveCardDrop,
   };
 };
