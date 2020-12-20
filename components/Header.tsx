@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Button,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
+  NavDropdown,
 } from "react-bootstrap";
+import Router from "next/router";
+import { checkRegisteration, exit } from "../utils";
 
 export const Header = () => {
+  const [details, setDetails] = useState<DefaultRegisterValues>({
+    trollo_name: "",
+    trollo_company: "",
+  });
+
+  useEffect(() => {
+    if (window) {
+      if (!checkRegisteration()) {
+        Router.push("/");
+      } else {
+        const trollo_name = window.localStorage.getItem("trollo_name");
+        const trollo_company = window.localStorage.getItem("trollo_company");
+        setDetails((details) => {
+          return { ...details, trollo_company, trollo_name };
+        });
+      }
+    }
+  }, []);
+
+  const handleExit = () => {
+    exit(details) && Router.push("/");
+  };
+
   return (
     <Navbar variant="dark" expand="lg">
       <Navbar.Brand className="d-flex align-items-center" href="/">
@@ -36,11 +61,28 @@ export const Header = () => {
             <i className="bi bi-calendar-range-fill mr-1 mt-n1"></i>
             <span>Calendar</span>
           </Nav.Link>
+          {checkRegisteration() && (
+            <NavDropdown
+              title={
+                <>
+                  <i className="bi bi-person-badge-fill mr-1 mt-n1"></i>
+                  <span>{details.trollo_name}</span>
+                </>
+              }
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item>{details.trollo_company}</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={handleExit}>Exit</NavDropdown.Item>
+            </NavDropdown>
+          )}
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
+        {checkRegisteration() && (
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );

@@ -6,12 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <StateProvider>
-        <div className="wrapper">
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </div>
+        <Component {...pageProps} />
       </StateProvider>
     </>
   );
