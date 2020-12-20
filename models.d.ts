@@ -24,3 +24,5 @@ interface ContextDefault {
   reorderCards: (result: { [key: string]: any }) => void;
   reorderBoards: (result: { [key: string]: any }) => void;
 }
+
+type DefaultRegisterValues = { trollo_name: string; trollo_company: string };
