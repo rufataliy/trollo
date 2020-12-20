@@ -1,38 +1,88 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Button,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
+  NavDropdown,
 } from "react-bootstrap";
+import Router from "next/router";
+import { checkRegisteration, exit } from "../utils";
 
 export const Header = () => {
+  const [details, setDetails] = useState<DefaultRegisterValues>({
+    trollo_name: "",
+    trollo_company: "",
+  });
+
+  useEffect(() => {
+    if (window) {
+      if (!checkRegisteration()) {
+        Router.push("/");
+      } else {
+        const trollo_name = window.localStorage.getItem("trollo_name");
+        const trollo_company = window.localStorage.getItem("trollo_company");
+        setDetails((details) => {
+          return { ...details, trollo_company, trollo_name };
+        });
+      }
+    }
+  }, []);
+
+  const handleExit = () => {
+    exit(details) && Router.push("/");
+  };
+
   return (
     <Navbar variant="dark" expand="lg">
-      <Navbar.Brand href="#home">Trollo</Navbar.Brand>
+      <Navbar.Brand className="d-flex align-items-center" href="/">
+        <img
+          src="/logo.svg"
+          width="30"
+          height="20"
+          className="d-inline-block align-top"
+          alt="Trollo logo"
+        />{" "}
+        Trollo
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link className="d-flex align-items-center" href="/">
+            <i className="bi bi-house-door-fill mr-1 mt-n1"></i>
+            <span>Home</span>
+          </Nav.Link>
+          <Nav.Link className="d-flex align-items-center" href="/boards">
+            <i className="bi bi-columns-gap mr-1 mt-n1"></i>
+            <span>Boards</span>
+          </Nav.Link>
+          <Nav.Link className="d-flex align-items-center" href="/calendar">
+            <i className="bi bi-calendar-range-fill mr-1 mt-n1"></i>
+            <span>Calendar</span>
+          </Nav.Link>
+          {checkRegisteration() && (
+            <NavDropdown
+              title={
+                <>
+                  <i className="bi bi-person-badge-fill mr-1 mt-n1"></i>
+                  <span>{details.trollo_name}</span>
+                </>
+              }
+              id="basic-nav-dropdown"
+            >
+              <NavDropdown.Item>{details.trollo_company}</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={handleExit}>Exit</NavDropdown.Item>
+            </NavDropdown>
+          )}
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
+        {checkRegisteration() && (
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
