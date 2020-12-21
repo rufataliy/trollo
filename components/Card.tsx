@@ -6,13 +6,14 @@ import { DropDown } from "./DropDown";
 import { useOutsideClick } from "../customHooks";
 import { useStore } from "../store";
 import { DueDays } from "./DueDays";
+import { BoardSelector } from "./BoardSelector";
 
 interface Props {
   card: Card;
 }
 
 export const Card: React.FC<Props> = ({ card }) => {
-  const defaultOptions = { deadline: card.deadline, board_id: card.board_id };
+  const defaultOptions = { date: card.date, board_id: card.board_id };
   const [edit, setEdit] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const refBody = useRef<HTMLDivElement>(null);
@@ -81,38 +82,25 @@ export const Card: React.FC<Props> = ({ card }) => {
             <Form.Control
               onChange={(e) =>
                 handleOptionsChange({
-                  deadline: e.currentTarget.value,
+                  date: e.currentTarget.value,
                   board_id: options.board_id,
                 })
               }
-              value={options.deadline}
+              value={options.date}
               type="date"
               custom
             />
           </Form.Group>
-          <Form.Group className="form-control h-auto" controlId="boardsSelect">
-            <Form.Label>Boards</Form.Label>
-            <Form.Control
-              name="boardsSelect"
-              onChange={(e) =>
-                handleOptionsChange({
-                  deadline: options.deadline,
-                  board_id: e.currentTarget.value,
-                })
-              }
-              value={options.board_id}
-              as="select"
-              custom
-            >
-              {boards.map((board, index) => {
-                return (
-                  <option key={index} value={board.id}>
-                    {board.title}
-                  </option>
-                );
-              })}
-            </Form.Control>
-          </Form.Group>
+          <BoardSelector
+            boards={boards}
+            board_id={options.board_id}
+            onChange={(value) =>
+              handleOptionsChange({
+                date: options.date,
+                board_id: value,
+              })
+            }
+          />
           <div className="form-control">
             <Button
               onClick={handleOptionsSubmit}

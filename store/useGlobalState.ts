@@ -4,6 +4,7 @@ import { boardsDefault, cardsDefault } from "./mockData";
 export const useGlobalState = (): ContextDefault => {
   const [cards, setCards] = useState<Card[] | null>(cardsDefault);
   const [boards, setBoards] = useState<Board[] | null>(boardsDefault);
+  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
 
   const addNewBoard = (newBoard: Board) => {
     setBoards((boards) => {
@@ -78,6 +79,13 @@ export const useGlobalState = (): ContextDefault => {
     });
   };
 
+  const saveCalendarEvent = (id: string) => {
+    const selectedCard = cards.find((card) => card.id === id);
+    setSelectedCard(selectedCard);
+  };
+
+  const resetCalendarEvent = () => setSelectedCard(null);
+
   return {
     cards,
     boards,
@@ -89,5 +97,8 @@ export const useGlobalState = (): ContextDefault => {
     deleteBoard,
     reorderCards,
     reorderBoards,
+    selectedCard,
+    saveCalendarEvent,
+    resetCalendarEvent,
   };
 };

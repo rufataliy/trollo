@@ -1,0 +1,88 @@
+.calendar-wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+
+  & .fc-daygrid-event-harness {
+    cursor: pointer;
+  }
+
+  & .fc .fc-daygrid-day.fc-day-today {
+    background-color: rgba(11, 196, 235, 0.2);
+  }
+  & .fc-h-event {
+    background-color: white;
+    & .fc-event-main {
+      color: black;
+    }
+  }
+  & .fc-daygrid-day-number {
+    width: 100%;
+    cursor: pointer;
+  }
+  & .fc-daygrid-day-number:hover {
+    background: rgba($color: #000000, $alpha: 0.5);
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.calendar-card {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 1000;
+  & label {
+    color: white;
+  }
+  & .card-new,
+  .board-new {
+    background: black;
+    padding: $spacer / 2;
+    & > * {
+      padding: 0;
+    }
+  }
+  & .form-control {
+    background-color: transparent;
+    border: none;
+  }
+  & input.form-control {
+    background: white;
+  }
+  & .card-container {
+    padding: 0 !important;
+    background: none;
+  }
+  & .card {
+    margin: 0 !important;
+  }
+  & .close-button {
+    cursor: pointer;
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  &-add-title {
+    background: black;
+  }
+}
+
+.fc.fc-media-screen.fc-direction-ltr {
+  max-height: 100%;
+  color: white;
+  & button {
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 1);
+    }
+  }
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

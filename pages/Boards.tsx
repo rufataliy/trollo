@@ -9,6 +9,7 @@ import Router from "next/router";
 
 export default function Boards() {
   const { boards, cards, reorderCards, reorderBoards } = useStore();
+
   useEffect(() => {
     if (!checkRegisteration()) {
       Router.push("/");
@@ -24,7 +25,6 @@ export default function Boards() {
     <>
       <Head>
         <title>Trollo | Boards</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="wrapper">
         <Header />

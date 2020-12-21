@@ -5,7 +5,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c0",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2020-12-10",
   },
   {
     title: "Card Title",
@@ -13,7 +13,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c4",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2020-12-15",
   },
   {
     title: "Card Title",
@@ -21,7 +21,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c7",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2020-12-18",
   },
   {
     title: "Card Title",
@@ -29,7 +29,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c2",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2020-30-25",
   },
   {
     title: "Card Title",
@@ -37,7 +37,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c8",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2021-01-10",
   },
   {
     title: "Card Title",
@@ -45,7 +45,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c5",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2021-01-10",
   },
   {
     title: "Card Title",
@@ -53,7 +53,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c3",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2021-01-10",
   },
   {
     title: "Card Title",
@@ -61,7 +61,7 @@ export const cardsDefault: Card[] = [
     content: "something here long",
     id: "c6",
     type: "cards",
-    deadline: "2021-01-10",
+    date: "2021-01-10",
   },
 ];
 

@@ -41,11 +41,11 @@ export const NewBoard = () => {
       >
         + Add new board
       </Button>
-      <div className={`${show ? "" : "hide"}`}>
+      <div className={`board-new ${show ? "" : "hide"}`}>
         <div className={`mb-2`}>
           <Form.Group className="mb-0">
             <Form.Label htmlFor="board" className="form-label text-light">
-              Name
+              Board title
             </Form.Label>
             <Form.Control
               type="text"
