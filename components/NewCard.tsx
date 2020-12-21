@@ -3,14 +3,18 @@ import { Form, Button } from "react-bootstrap";
 import { useOutsideClick } from "../customHooks";
 import { useStore } from "../store";
 import { v1 as getNewId } from "uuid";
+import { BoardSelector } from "./BoardSelector";
 
 interface Props {
-  boardId: string;
+  boardId?: string;
+  date?: string;
 }
 
-export const NewCard: React.FC<Props> = ({ boardId }) => {
+export const NewCard: React.FC<Props> = ({ boardId, date }) => {
   const { addNewCard } = useStore();
   const [show, setShow] = useState(false);
+  const { boards } = useStore();
+  const [board_id, setBoard_id] = useState(boards[0].id);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -22,15 +26,17 @@ export const NewCard: React.FC<Props> = ({ boardId }) => {
   };
 
   const handleSubmit = (e) => {
-    if (!value) return setError(true);
+    if (!value || !board_id) return setError(true);
     e.preventDefault();
     setError(false);
     const newCard: Card = {
       id: getNewId(),
-      board_id: boardId,
+      board_id: board_id,
       title: value,
       type: "card",
+      date: date || null,
     };
+
     addNewCard(newCard);
     resetState();
   };
@@ -50,10 +56,13 @@ export const NewCard: React.FC<Props> = ({ boardId }) => {
       >
         + Add Card
       </button>
-      <div className={`${show ? "" : "hide"}`}>
+      <div className={`card-new ${show ? "" : "hide"}`}>
+        {!boardId ? (
+          <BoardSelector boards={boards} onChange={(id) => setBoard_id(id)} />
+        ) : null}
         <Form.Group className={`mb-2`}>
           <Form.Label htmlFor="card" className="form-label">
-            Title
+            Card title
           </Form.Label>
           <Form.Control
             isInvalid={error}
@@ -66,7 +75,7 @@ export const NewCard: React.FC<Props> = ({ boardId }) => {
             placeholder="Next big things . . ."
           />
         </Form.Group>
-        <div className="mb-0 d-flex">
+        <div className="mb-0 d-flex form-btn-group">
           <Button
             onClick={handleSubmit}
             type="submit"
