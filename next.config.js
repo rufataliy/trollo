@@ -6,6 +6,6 @@ module.exports = withCss(withSass(withFonts({
   cssLoaderOptions: {
     importLoaders: 1,
     localIdentName: '[local]-[hash:base64:5]',
-    url: false, // This fixed my problem
+    url: false,
   },
 })))
