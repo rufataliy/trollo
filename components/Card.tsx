@@ -6,6 +6,7 @@ import { DropDown } from "./DropDown";
 import { useOutsideClick } from "../customHooks";
 import { useStore } from "../store";
 import { DueDays } from "./DueDays";
+import { BoardSelector } from "./BoardSelector";
 
 interface Props {
   card: Card;
@@ -90,29 +91,16 @@ export const Card: React.FC<Props> = ({ card }) => {
               custom
             />
           </Form.Group>
-          <Form.Group className="form-control h-auto" controlId="boardsSelect">
-            <Form.Label>Boards</Form.Label>
-            <Form.Control
-              name="boardsSelect"
-              onChange={(e) =>
-                handleOptionsChange({
-                  date: options.date,
-                  board_id: e.currentTarget.value,
-                })
-              }
-              value={options.board_id}
-              as="select"
-              custom
-            >
-              {boards.map((board, index) => {
-                return (
-                  <option key={index} value={board.id}>
-                    {board.title}
-                  </option>
-                );
-              })}
-            </Form.Control>
-          </Form.Group>
+          <BoardSelector
+            boards={boards}
+            board_id={options.board_id}
+            onChange={(value) =>
+              handleOptionsChange({
+                date: options.date,
+                board_id: value,
+              })
+            }
+          />
           <div className="form-control">
             <Button
               onClick={handleOptionsSubmit}
