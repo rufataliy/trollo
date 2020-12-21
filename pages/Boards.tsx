@@ -25,7 +25,6 @@ export default function Boards() {
     <>
       <Head>
         <title>Trollo | Boards</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="wrapper">
         <Header />

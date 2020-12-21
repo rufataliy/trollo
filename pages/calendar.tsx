@@ -15,8 +15,7 @@ export default function Boards() {
   return (
     <>
       <Head>
-        <title>Trollo | Boards</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Trollo | Calendar</title>
       </Head>
       <div className="wrapper">
         <Header />
