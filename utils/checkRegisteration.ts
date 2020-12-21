@@ -5,7 +5,5 @@ export const checkRegisteration = () => {
       const trollo_company = window.localStorage.getItem("trollo_company");
       return Boolean(trollo_name) || Boolean(trollo_company);
     }
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
