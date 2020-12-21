@@ -90,7 +90,7 @@ export const Calendar = () => {
         eventClick={handleEventClick}
         eventContent={renderCustomEvent}
         events={cards}
-        plugins={[dayGridPlugin]}
+        plugins={[dayGridPlugin, fullCalendarInteraction]}
         initialView="dayGridMonth"
       />
     </div>
