@@ -1,6 +1,11 @@
 .calendar-wrapper {
   background: rgba(0, 0, 0, 0.5);
   height: 100%;
+
+  & .fc-daygrid-event-harness {
+    cursor: pointer;
+  }
+
   & .fc .fc-daygrid-day.fc-day-today {
     background-color: rgba(11, 196, 235, 0.2);
   }
@@ -8,6 +13,22 @@
     background-color: white;
     & .fc-event-main {
       color: black;
+    }
+  }
+}
+
+.calendar-card {
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 1000;
+  & .card {
+    margin: 0 !important;
+  }
+  & .close-button {
+    cursor: pointer;
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
     }
   }
 }
@@ -20,5 +41,14 @@
     &:hover {
       background-color: rgba($color: #000000, $alpha: 1);
     }
+  }
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
   }
 }

@@ -23,6 +23,9 @@ interface ContextDefault {
   deleteBoard: (deletedBoard: Board) => void;
   reorderCards: (result: { [key: string]: any }) => void;
   reorderBoards: (result: { [key: string]: any }) => void;
+  selectedCard: Card;
+  saveCalendarEvent: (id: string) => void;
+  resetCalendarEvent: () => void;
 }
 
 type DefaultRegisterValues = { trollo_name: string; trollo_company: string };
