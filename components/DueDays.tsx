@@ -9,7 +9,7 @@ interface Props {
 
 export const DueDays: React.FC<Props> = ({ card }) => {
   const today = new Date();
-  const dueDate = new Date(card.deadline);
+  const dueDate = new Date(card.date);
 
   const dueInMs = dueDate.getTime() - today.getTime();
   const dueInDays = Math.floor(dueInMs / (24 * 60 * 60 * 1000));
@@ -24,7 +24,7 @@ export const DueDays: React.FC<Props> = ({ card }) => {
           {overdue && `${Math.abs(dueInDays)} days overdue`}
           {!overdue && (
             <span>
-              Due by <strong>{card.deadline}</strong>
+              Due by <strong>{card.date}</strong>
             </span>
           )}
         </Tooltip>

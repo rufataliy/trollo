@@ -9,6 +9,7 @@ import Router from "next/router";
 
 export default function Boards() {
   const { boards, cards, reorderCards, reorderBoards } = useStore();
+
   useEffect(() => {
     if (!checkRegisteration()) {
       Router.push("/");

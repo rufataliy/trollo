@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = ({ card }) => {
-  const defaultOptions = { deadline: card.deadline, board_id: card.board_id };
+  const defaultOptions = { date: card.date, board_id: card.board_id };
   const [edit, setEdit] = useState(false);
   const [showPopover, setShowPopover] = useState(false);
   const refBody = useRef<HTMLDivElement>(null);
@@ -81,11 +81,11 @@ export const Card: React.FC<Props> = ({ card }) => {
             <Form.Control
               onChange={(e) =>
                 handleOptionsChange({
-                  deadline: e.currentTarget.value,
+                  date: e.currentTarget.value,
                   board_id: options.board_id,
                 })
               }
-              value={options.deadline}
+              value={options.date}
               type="date"
               custom
             />
@@ -96,7 +96,7 @@ export const Card: React.FC<Props> = ({ card }) => {
               name="boardsSelect"
               onChange={(e) =>
                 handleOptionsChange({
-                  deadline: options.deadline,
+                  date: options.date,
                   board_id: e.currentTarget.value,
                 })
               }

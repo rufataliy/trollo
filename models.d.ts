@@ -4,7 +4,7 @@ interface Card {
   content?: string;
   board_id: string;
   title: string;
-  deadline?: string;
+  date?: string;
 }
 
 interface Board {
