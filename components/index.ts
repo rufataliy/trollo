@@ -5,3 +5,4 @@ export { NewBoard } from "./NewBoard";
 export { CalendarPage } from "./CalendarPage";
 export { Boards } from "./Boards";
 export { Home } from "./Home";
+export { Alert } from "./Alert";

@@ -5,17 +5,20 @@ export const useGlobalState = (): ContextDefault => {
   const [cards, setCards] = useState<Card[] | null>(cardsDefault);
   const [boards, setBoards] = useState<Board[] | null>(boardsDefault);
   const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [alert, setAlert] = useState<Alert | null>(null);
 
   const addNewBoard = (newBoard: Board) => {
     setBoards((boards) => {
       return [...boards, newBoard];
     });
+    setAlert({ variant: "success", text: "Saved !" });
   };
 
   const addNewCard = (newCard: Card) => {
     setCards((cards) => {
       return [...cards, newCard];
     });
+    setAlert({ variant: "success", text: "Saved !" });
   };
 
   const editCard = (editedCard: Card) => {
@@ -86,6 +89,14 @@ export const useGlobalState = (): ContextDefault => {
 
   const resetCalendarEvent = () => setSelectedCard(null);
 
+  const showAlert = (alert: Alert) => {
+    setAlert(() => alert);
+  };
+
+  const resetAlert = () => {
+    setAlert(null);
+  };
+
   return {
     cards,
     boards,
@@ -100,5 +111,8 @@ export const useGlobalState = (): ContextDefault => {
     selectedCard,
     saveCalendarEvent,
     resetCalendarEvent,
+    alert,
+    resetAlert,
+    showAlert,
   };
 };

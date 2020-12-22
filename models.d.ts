@@ -12,6 +12,12 @@ interface Board {
   title: string;
 }
 
+interface Alert {
+  titie?: string;
+  variant: "success" | "danger";
+  text: string;
+}
+
 interface ContextDefault {
   cards?: Card[];
   boards?: Board[];
@@ -26,6 +32,9 @@ interface ContextDefault {
   selectedCard: Card;
   saveCalendarEvent: (id: string) => void;
   resetCalendarEvent: () => void;
+  alert: Alert;
+  showAlert: (alert: Alert) => void;
+  resetAlert: () => void;
 }
 
 type DefaultRegisterValues = { trollo_name: string; trollo_company: string };
