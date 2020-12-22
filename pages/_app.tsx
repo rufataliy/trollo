@@ -6,6 +6,38 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        {/* <!-- Primary Meta Tags --> */}
+        <meta name="title" content="Trollo | Trello Clone" />
+        <meta
+          name="description"
+          content="Clone application of trello with drag and drop cards and boards and calendar."
+        />
+
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://trollo.rufat.tech/" />
+        <meta property="og:title" content="Trollo | Trello Clone" />
+        <meta
+          property="og:description"
+          content="Clone application of trello with drag and drop cards and boards and calendar."
+        />
+        <meta
+          property="og:image"
+          content="https://trollo.rufat.tech/thumbnail.jpg"
+        />
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://trollo.rufat.tech/" />
+        <meta property="twitter:title" content="Trollo | Trello Clone" />
+        <meta
+          property="twitter:description"
+          content="Clone application of trello with drag and drop cards and boards and calendar."
+        />
+        <meta
+          property="twitter:image"
+          content="https://trollo.rufat.tech/thumbnail.jpg"
+        />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
