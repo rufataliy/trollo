@@ -1,20 +1,13 @@
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { Container, Card, NewBoard, Header } from "../components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useStore } from "../store";
-import { checkRegisteration } from "../utils";
-import Router from "next/router";
 
-export default function Boards() {
+export function Boards() {
   const { boards, cards, reorderCards, reorderBoards } = useStore();
 
-  useEffect(() => {
-    if (!checkRegisteration()) {
-      Router.push("/");
-    }
-  }, []);
   const handleDragEnd = (result) => {
     if (!result.destination) return;
     if (result.type === "board") return reorderBoards(result);
