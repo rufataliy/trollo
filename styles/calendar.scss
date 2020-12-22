@@ -18,11 +18,24 @@
   & .fc-daygrid-day-number {
     width: 100%;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
+    background: rgba($color: #000000, $alpha: 0.1);
+    & .add-new-text {
+      display: inline-block;
+      overflow: hidden;
+      max-width: 0;
+      transform: translateX(-5px);
+      transition: 0.2s ease-in-out;
+    }
   }
   & .fc-daygrid-day-number:hover {
     background: rgba($color: #000000, $alpha: 0.5);
     color: white;
     text-decoration: none;
+    & .add-new-text {
+      max-width: unset;
+      transform: translateX(0);
+    }
   }
 }
 

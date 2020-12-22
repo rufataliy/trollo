@@ -107,7 +107,10 @@ export const Calendar = () => {
         }
       >
         <div className="d-flex align-items-center justify-content-between">
-          <span>add</span>
+          <span className="d-flex align-items-center">
+            <i className="bi bi-calendar-plus mr-3 mt-n1" />
+            <span className="add-new-text">New</span>
+          </span>
           <span>{e.dayNumberText}</span>
         </div>
       </OverlayTrigger>
