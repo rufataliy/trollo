@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import Router from "next/router";
 import { checkRegisteration, exit } from "../utils";
+import Link from "next/link";
 
 export const Header = () => {
   const [details, setDetails] = useState<DefaultRegisterValues>({
@@ -49,18 +50,28 @@ export const Header = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link className="d-flex align-items-center" href="/">
-            <i className="bi bi-house-door-fill mr-1 mt-n1"></i>
-            <span>Home</span>
-          </Nav.Link>
-          <Nav.Link className="d-flex align-items-center" href="/boards">
-            <i className="bi bi-columns-gap mr-1 mt-n1"></i>
-            <span>Boards</span>
-          </Nav.Link>
-          <Nav.Link className="d-flex align-items-center" href="/calendar">
-            <i className="bi bi-calendar-range-fill mr-1 mt-n1"></i>
-            <span>Calendar</span>
-          </Nav.Link>
+          <Link shallow href="/">
+            <a>
+              <Nav.Link as="div" className="d-flex align-items-center">
+                <i className="bi bi-house-door-fill mr-1 mt-n1"></i>
+                <span>Home</span>
+              </Nav.Link>
+            </a>
+          </Link>
+          <Link shallow href="?view=boards">
+            <a>
+              <Nav.Link as="div" className="d-flex align-items-center">
+                <i className="bi bi-columns-gap mr-1 mt-n1"></i>
+                <span>Boards</span>
+              </Nav.Link>
+            </a>
+          </Link>
+          <Link shallow href="?view=calendar">
+            <Nav.Link as="div" className="d-flex align-items-center">
+              <i className="bi bi-calendar-range-fill mr-1 mt-n1"></i>
+              <span>Calendar</span>
+            </Nav.Link>
+          </Link>
           {checkRegisteration() && (
             <NavDropdown
               title={

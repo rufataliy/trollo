@@ -1,17 +1,9 @@
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import { Header } from "../components";
-import { checkRegisteration } from "../utils";
-import Router from "next/router";
 import { Calendar } from "../components/Calendar";
 
-export default function Boards() {
-  useEffect(() => {
-    if (!checkRegisteration()) {
-      Router.push("/");
-    }
-  }, []);
-
+export function CalendarPage() {
   return (
     <>
       <Head>
