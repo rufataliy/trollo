@@ -73,8 +73,8 @@ export const Card: React.FC<Props> = ({ card }) => {
   return (
     <CardBootstrap ref={refBody} id={card.id} className="w-100 mb-2">
       <CardBootstrap.Header className="d-flex align-items-center justify-content-between pt-1 pb-1 pr-1">
-        <CardBootstrap.Title as="p" className="w-100 m-0">
-          {card.title}
+        <CardBootstrap.Title as="p" className="w-100 m-0 ">
+          <span className="card-title">{card.title}</span>
         </CardBootstrap.Title>
         <DropDown id={card.id} reset={resetOptions}>
           <Form.Group className="form-control h-auto" controlId="deadline">
@@ -119,7 +119,7 @@ export const Card: React.FC<Props> = ({ card }) => {
             handleSubmit={handleEdit}
           />
         ) : (
-          card.content + card.id
+          <span className="card-content">{card.content}</span>
         )}
       </CardBootstrap.Body>
       {!edit && (

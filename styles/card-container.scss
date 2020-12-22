@@ -33,4 +33,11 @@
   &-footer {
     justify-self: flex-end;
   }
+  & .board-new {
+    background: black;
+    padding: $spacer / 2;
+    & > * {
+      padding: 0;
+    }
+  }
 }

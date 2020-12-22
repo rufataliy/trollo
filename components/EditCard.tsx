@@ -29,7 +29,7 @@ export const EditCard: React.FC<Props> = ({
   return (
     <>
       <div>
-        <div className={`mb-2 `}>
+        <div className={`mb-2 card-edit`}>
           <Form.Group className="m-0">
             <Form.Label htmlFor="content" className="form-label">
               Content

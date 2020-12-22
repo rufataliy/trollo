@@ -44,17 +44,7 @@
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 1000;
-  & label {
-    color: white;
-  }
-  & .card-new,
-  .board-new {
-    background: black;
-    padding: $spacer / 2;
-    & > * {
-      padding: 0;
-    }
-  }
+
   & .form-control {
     background-color: transparent;
     border: none;
