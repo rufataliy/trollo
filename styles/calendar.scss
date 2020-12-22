@@ -24,7 +24,7 @@
       display: inline-block;
       overflow: hidden;
       max-width: 0;
-      transform: translateX(-5px);
+      margin-left: -5px;
       transition: 0.2s ease-in-out;
     }
   }
@@ -34,7 +34,7 @@
     text-decoration: none;
     & .add-new-text {
       max-width: unset;
-      transform: translateX(0);
+      margin-left: 0;
     }
   }
 }
