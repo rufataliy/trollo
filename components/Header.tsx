@@ -7,7 +7,7 @@ import {
   FormControl,
   NavDropdown,
 } from "react-bootstrap";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { checkRegisteration, exit } from "../utils";
 import Link from "next/link";
 import { useStore } from "../store";
@@ -18,11 +18,12 @@ export const Header = () => {
     trollo_company: "",
   });
   const { showAlert } = useStore();
+  const { query, push } = useRouter();
 
   useEffect(() => {
     if (window) {
-      if (!checkRegisteration()) {
-        Router.push("/");
+      if (!checkRegisteration() && query.view) {
+        push("/");
         showAlert({
           text: "Please register your name and company",
           titie: "Register",
@@ -39,7 +40,7 @@ export const Header = () => {
   }, []);
 
   const handleExit = () => {
-    exit(details) && Router.push("/");
+    exit(details) && push("/");
   };
 
   return (
