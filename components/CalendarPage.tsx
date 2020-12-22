@@ -11,7 +11,7 @@ export function CalendarPage() {
       </Head>
       <div className="wrapper">
         <Header />
-        <main className="p-3">
+        <main className="p-md-3 pt-3 pb-3">
           <Calendar />
         </main>
       </div>
