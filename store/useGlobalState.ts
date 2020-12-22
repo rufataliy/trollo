@@ -11,12 +11,14 @@ export const useGlobalState = (): ContextDefault => {
     setBoards((boards) => {
       return [...boards, newBoard];
     });
+    setAlert({ variant: "success", text: "Saved !" });
   };
 
   const addNewCard = (newCard: Card) => {
     setCards((cards) => {
       return [...cards, newCard];
     });
+    setAlert({ variant: "success", text: "Saved !" });
   };
 
   const editCard = (editedCard: Card) => {

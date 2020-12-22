@@ -10,7 +10,7 @@ export const Alert = () => {
       {alert.titie ? (
         <AlertBootstrap.Heading>{alert.titie}</AlertBootstrap.Heading>
       ) : null}
-      <p>{alert.text}</p>
+      <p className="m-0">{alert.text}</p>
     </AlertBootstrap>
   );
 };
