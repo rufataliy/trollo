@@ -1,64 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import fullCalendarInteraction from "@fullcalendar/interaction";
 import { useStore } from "../store";
 import { Card } from "./Card";
-import { useOutsideClick } from "../customHooks";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { NewCard } from "./NewCard";
 import { NewBoard } from "./NewBoard";
 
-const positionsDefault = {
-  clientX: null,
-  clientY: null,
-};
-
 export const Calendar = () => {
-  const {
-    cards,
-    selectedCard,
-    saveCalendarEvent,
-    resetCalendarEvent,
-  } = useStore();
-  const [{ clientX, clientY }, setCardPosition] = useState(positionsDefault);
+  const { cards } = useStore();
+
   const ref = useRef<HTMLDivElement>(null);
 
-  const registerDateClick = (id: string, clientX: number, clientY: number) => {
-    setCardPosition(() => ({
-      clientX,
-      clientY,
-    }));
-    saveCalendarEvent(id);
-  };
-
-  const unregisterEventClick = () => {
-    setCardPosition(positionsDefault);
-    resetCalendarEvent();
-  };
-
-  const handleEventClick = ({
-    event: { id },
-    jsEvent: { clientX, clientY },
-  }) => {
-    if (!selectedCard || selectedCard.id !== id) {
-      registerDateClick(id, clientX, clientY);
-    } else {
-      unregisterEventClick();
-    }
-  };
-
-  try {
-    var flip = window?.innerWidth - clientX < 200;
-    var flipClientX = window?.innerWidth - 350;
-  } catch (e) {}
-
-  const style = {
-    left: `${flip ? flipClientX : clientX}px`,
-    top: `${clientY}px`,
-    transform: "scale(1)",
-    opacity: 1,
-  };
   const renderCustomEvent = ({
     event: {
       title,
@@ -72,7 +26,6 @@ export const Calendar = () => {
         trigger="click"
         placement="right"
         rootClose
-        onHide={unregisterEventClick}
         flip
         overlay={
           <div className="calendar-card p-1 pb-0">
@@ -117,11 +70,9 @@ export const Calendar = () => {
     );
   };
 
-  useOutsideClick(ref, unregisterEventClick);
   return (
     <div ref={ref} className="calendar-wrapper p-3">
       <FullCalendar
-        eventClick={handleEventClick}
         eventContent={renderCustomEvent}
         dayCellContent={renderCustomDay}
         events={cards}
