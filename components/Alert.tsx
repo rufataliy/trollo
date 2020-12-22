@@ -6,12 +6,7 @@ export const Alert = () => {
   const { alert, resetAlert } = useStore();
 
   return (
-    <AlertBootstrap
-      className="alert"
-      variant={alert.variant}
-      onClose={resetAlert}
-      dismissible
-    >
+    <AlertBootstrap variant={alert.variant} onClose={resetAlert} dismissible>
       {alert.titie ? (
         <AlertBootstrap.Heading>{alert.titie}</AlertBootstrap.Heading>
       ) : null}

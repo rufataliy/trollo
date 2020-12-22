@@ -10,17 +10,24 @@ import {
 import Router from "next/router";
 import { checkRegisteration, exit } from "../utils";
 import Link from "next/link";
+import { useStore } from "../store";
 
 export const Header = () => {
   const [details, setDetails] = useState<DefaultRegisterValues>({
     trollo_name: "",
     trollo_company: "",
   });
+  const { showAlert } = useStore();
 
   useEffect(() => {
     if (window) {
       if (!checkRegisteration()) {
         Router.push("/");
+        showAlert({
+          text: "Please register your name and company",
+          titie: "Register",
+          variant: "danger",
+        });
       } else {
         const trollo_name = window.localStorage.getItem("trollo_name");
         const trollo_company = window.localStorage.getItem("trollo_company");
@@ -67,10 +74,12 @@ export const Header = () => {
             </a>
           </Link>
           <Link shallow href="?view=calendar">
-            <Nav.Link as="div" className="d-flex align-items-center">
-              <i className="bi bi-calendar-range-fill mr-1 mt-n1"></i>
-              <span>Calendar</span>
-            </Nav.Link>
+            <a>
+              <Nav.Link as="div" className="d-flex align-items-center">
+                <i className="bi bi-calendar-range-fill mr-1 mt-n1"></i>
+                <span>Calendar</span>
+              </Nav.Link>
+            </a>
           </Link>
           {checkRegisteration() && (
             <NavDropdown
