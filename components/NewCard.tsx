@@ -54,7 +54,7 @@ export const NewCard: React.FC<Props> = ({ boardId, date }) => {
         onClick={() => setShow(true)}
         className={`btn-new ${show ? "hide" : ""}`}
       >
-        + Add Card
+        <span>&#43;</span> Add Card
       </button>
       <div className={`card-new ${show ? "" : "hide"}`}>
         {!boardId ? (

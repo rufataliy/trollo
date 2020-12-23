@@ -39,7 +39,7 @@ export const NewBoard = () => {
         onClick={() => setShow(true)}
         className={`btn-new ${show ? "hide" : ""}`}
       >
-        + Add new board
+        <span>&#43;</span> Add Board
       </Button>
       <div className={`board-new ${show ? "" : "hide"}`}>
         <div className={`mb-2`}>
