@@ -24,7 +24,6 @@ export const Calendar = () => {
     return (
       <OverlayTrigger
         trigger="click"
-        placement="right"
         rootClose
         flip
         overlay={
@@ -46,7 +45,6 @@ export const Calendar = () => {
     return (
       <OverlayTrigger
         trigger="click"
-        placement="right"
         rootClose
         flip
         overlay={

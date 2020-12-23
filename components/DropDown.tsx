@@ -11,7 +11,7 @@ interface Props {
 
 export const DropDown: React.FC<Props> = ({ children, text, id, reset }) => {
   return (
-    <Dropdown onToggle={() => reset()} flip>
+    <Dropdown drop="left" onToggle={() => reset()} flip>
       <Dropdown.Toggle variant="success" id={id} as={CustomToggle} />
       <Dropdown.Menu rootCloseEvent="click">
         <Dropdown.Header className="text-center pt-1 pb-1">
