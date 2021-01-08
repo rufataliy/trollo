@@ -24,9 +24,9 @@ export function Home() {
               <Row className="mb-5">
                 <Col>
                   <h1 className="text-light text-center">Trello clone </h1>
-                  <h2 className="text-light text-center">
+                  <h4 className="text-light text-center">
                     Drag and drop cards, boards, calendar
-                  </h2>
+                  </h4>
                 </Col>
               </Row>
               <Row>
