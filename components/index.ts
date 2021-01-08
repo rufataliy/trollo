@@ -1,5 +1,5 @@
 export { Header } from "./Header";
-export { Container } from "./Container";
+export { Board } from "./Board";
 export { Card } from "./Card";
 export { NewBoard } from "./NewBoard";
 export { CalendarPage } from "./CalendarPage";
