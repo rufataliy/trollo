@@ -103,3 +103,6 @@ dist
 # TernJS port file
 .tern-port
 .ecosystem.config.js
+
+#pm2
+ecosystem.config.js
