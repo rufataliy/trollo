@@ -8,34 +8,21 @@ interface Props {
 }
 
 const defaultValues: DefaultRegisterValues = {
-  trollo_name: "",
-  trollo_company: "",
+  trollo_company: "Awesome company",
+  trollo_name: "Me",
 };
 
 const defaultErrors = { name: false, company: false };
 
 export const Register: React.FC<Props> = ({ handleSubmit }) => {
   const [values, setValues] = useState(defaultValues);
-  const [errors, setErrors] = useState(defaultErrors);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (
-      isEmptyString(values.trollo_company) ||
-      isEmptyString(values.trollo_name)
-    ) {
-      return setErrors((errors) => ({
-        ...errors,
-        company: isEmptyString(values.trollo_company),
-        name: isEmptyString(values.trollo_name),
-      }));
-    }
-
     handleSubmit(values);
   };
 
   const onReset = () => {
-    setErrors({ ...defaultErrors });
     setValues({ ...defaultValues });
   };
 
@@ -45,12 +32,14 @@ export const Register: React.FC<Props> = ({ handleSubmit }) => {
       onSubmit={onSubmit}
       className="register-form text-light d-flex flex-column justify-content-between bg-dark-op p-3 p-lg-5"
     >
+      <Form.Text className="text-light">
+        Values will be saved to local storage of your browser.
+      </Form.Text>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Name</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter your name"
-          isInvalid={errors.name}
           onChange={(e) =>
             setValues((values) => ({
               ...values,
@@ -58,9 +47,6 @@ export const Register: React.FC<Props> = ({ handleSubmit }) => {
             }))
           }
         />
-        <Form.Text className="text-light">
-          Nothing will be persisted or saved
-        </Form.Text>
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
@@ -68,7 +54,6 @@ export const Register: React.FC<Props> = ({ handleSubmit }) => {
         <Form.Control
           type="text"
           placeholder="Your organization"
-          isInvalid={errors.company}
           onChange={(e) =>
             setValues((values) => ({
               ...values,
