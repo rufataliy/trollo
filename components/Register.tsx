@@ -75,6 +75,14 @@ export const Register: React.FC<Props> = ({ handleSubmit }) => {
           Reset
         </Button>
       </div>
+      <Button
+        block
+        className="w-100 btn btn-new"
+        variant="primary"
+        type="submit"
+      >
+        Demo
+      </Button>
     </Form>
   );
 };
