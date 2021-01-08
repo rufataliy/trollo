@@ -32,7 +32,7 @@ export const Register: React.FC<Props> = ({ handleSubmit }) => {
       onSubmit={onSubmit}
       className="register-form text-light d-flex flex-column justify-content-between bg-dark-op p-3 p-lg-5"
     >
-      <Form.Text className="text-light">
+      <Form.Text className="text-light mb-3">
         Values will be saved to local storage of your browser.
       </Form.Text>
       <Form.Group controlId="formBasicEmail">
@@ -77,7 +77,7 @@ export const Register: React.FC<Props> = ({ handleSubmit }) => {
       </div>
       <Button
         block
-        className="w-100 btn btn-new"
+        className="w-100 btn btn-new mt-3"
         variant="primary"
         type="submit"
       >
