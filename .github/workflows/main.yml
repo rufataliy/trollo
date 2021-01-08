@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - if: github.ref == 'refs/heads/main'
       - uses: actions/checkout@v1
+      - if: github.ref == 'refs/heads/main'
 
       - name: Copy repository contents via scp
         uses: appleboy/scp-action@master
