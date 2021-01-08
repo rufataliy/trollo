@@ -59,7 +59,7 @@ export const Container: React.FC<Props> = ({ children, board }) => {
                 <ConfirmPopover
                   id={board.id}
                   show={showPopover}
-                  text={"Confirm delete."}
+                  text={"All cards will be removed."}
                   Target={
                     <Button
                       onClick={(e) => {
