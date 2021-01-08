@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { Container, Card, NewBoard, Header } from "../components";
+import { Board, Card, NewBoard, Header } from "../components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useStore } from "../store";
 
@@ -49,7 +49,7 @@ export function Boards() {
                                 {...provided.dragHandleProps}
                                 ref={provided.innerRef}
                               >
-                                <Container board={board}>
+                                <Board board={board}>
                                   <Droppable
                                     key={board.id}
                                     droppableId={board.id}
@@ -88,7 +88,7 @@ export function Boards() {
                                       );
                                     }}
                                   </Droppable>
-                                </Container>
+                                </Board>
                               </div>
                             );
                           }}

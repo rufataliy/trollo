@@ -11,7 +11,7 @@ interface Props {
   board: Board;
 }
 
-export const Container: React.FC<Props> = ({ children, board }) => {
+export const Board: React.FC<Props> = ({ children, board }) => {
   const [showPopover, setShowPopover] = useState(false);
   const [editing, setEditing] = useState(false);
   const { editBoard, deleteBoard } = useStore();
@@ -59,7 +59,7 @@ export const Container: React.FC<Props> = ({ children, board }) => {
                 <ConfirmPopover
                   id={board.id}
                   show={showPopover}
-                  text={"Confirm delete."}
+                  text={"All cards will be removed."}
                   Target={
                     <Button
                       onClick={(e) => {
