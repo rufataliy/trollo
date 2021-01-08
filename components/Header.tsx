@@ -25,7 +25,8 @@ export const Header = () => {
       if (!checkRegisteration() && query.view) {
         push("/");
         showAlert({
-          text: "Please register your name and company",
+          text:
+            "Please register ( just click `Create` button ) your name and company",
           titie: "Register",
           variant: "danger",
         });
